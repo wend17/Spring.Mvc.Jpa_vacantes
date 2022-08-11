@@ -21,7 +21,7 @@ public class HomeController {
 
     @GetMapping("/tabla")
     public String mostrarTabla(Model model) {
-        List<Vacante> lista = serviceVacantes.buscartodas(); // variable de tipo lista, la lista la obtenemos de serviceVacantes con el método
+        List<Vacante> lista = serviceVacantes.buscartodas(); // el metodo retorna una lista, variable de tipo lista, la lista la obtenemos de serviceVacantes con el método
         model.addAttribute("vacantes", lista);
         return "tabla";
     }
