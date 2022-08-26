@@ -1,17 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+<head th:insert="fragments/cabecera :: cabecera">
+    <title>Detalle de Empleo</title>
 </head>
+
 <body>
-    <h1>Detalle de la oferta de trabajo</h1>
-    <h3 th:text=" 'Nombre: '+ ${vacante.nombre}"></h3>
-    <h3 th:text=" 'Fecha de publicacion: '+${vacante.fecha}"></h3>
-    <h3 th:text=" 'Salario: '+${vacante.salario}"></h3>
-    <h3 th:text=" 'Descripcion: '+${vacante.descripcion}"></h3>
+<header th:insert="fragments/menu :: menu-principal">
+</header>
 
+<main role="main">
+    <hr>
+    <div class="container">
 
+        <div class="row">
+            <div class="col-md-3">
+                <img class="rounded mx-auto d-block" th:src=" @{/images/{img}(img=${vacante.imagen})}" alt="Generic placeholder image" width="180" height="180">
+            </div>
+            <div class="col-md-9">
+                <div class="card">
+                    <h4 class="card-header">Aplicar para <strong th:text="${vacante.nombre}"></strong></h4>
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Categoría: </strong> <span th:text="${vacante.categoria.nombre}"></span></h5>
+                        <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${#dates.format(vacante.fecha,'dd/MM/yyyy')}"></span></h6>
+                        <h6 class="card-title"><strong>Salario Ofrecido: </strong ><span th:text="${vacante.salario}"></span></h6>
+                        <p class="card-text" th:text="${vacante.descripcion}"></p>
+
+                        <div class="card bg-light mb-3" >
+                            <div class="card-body">
+                                <h5 class="card-title">Detalles de la oferta de trabajo</h5>
+                                <p class="card-text" th:utext="${vacante.detalles}"> </p>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary" href="#" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+</br>
+<footer th:insert="fragments/footer::pie-pagina" class="footer">
+</footer>
 </body>
-
 </html>

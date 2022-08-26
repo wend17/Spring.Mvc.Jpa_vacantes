@@ -1,10 +1,18 @@
 package com.example.vacantes.service;
 
 import com.example.vacantes.model.Vacante;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface IVacantesService {
-    List<Vacante> buscartodas(); //método que regresa una lista de objetos de tipo vacante
-    Vacante buscarPorId(Integer idvacante);
+    List<Vacante> buscartodas();
+    Vacante buscarPorId(Integer idVacante);
+    void guardar (Vacante vacante);
+    List<Vacante>buscarDestacadas();
+    void eliminar (Integer idVacante);
+    List<Vacante>buscarByExample(Example<Vacante> example);
+    public Page<Vacante> buscarTodas(Pageable page);
 }
