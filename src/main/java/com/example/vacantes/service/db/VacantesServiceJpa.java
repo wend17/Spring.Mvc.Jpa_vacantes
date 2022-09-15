@@ -17,13 +17,12 @@ import java.util.Optional;
 @Primary
 public class VacantesServiceJpa implements IVacantesService {
 
+
+
     @Autowired
     private VacantesRepository vacantesRepo;
 
-    @Override
-    public List<Vacante> buscartodas() {
-        return vacantesRepo.findAll();
-    }
+
 
     @Override
     public Vacante buscarPorId(Integer idVacante) {
@@ -58,5 +57,9 @@ public class VacantesServiceJpa implements IVacantesService {
     @Override
     public Page<Vacante> buscarTodas(Pageable page) {
         return vacantesRepo.findAll(page);
+    }
+    @Override
+    public List<Vacante> buscarTodas() {
+        return vacantesRepo.findAll();
     }
 }

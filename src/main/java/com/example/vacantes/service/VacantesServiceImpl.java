@@ -66,7 +66,7 @@ public class VacantesServiceImpl implements IVacantesService{
     }
 
     @Override
-    public List<Vacante> buscartodas() {
+    public List<Vacante> buscarTodas() {
         return lista;
     }
 

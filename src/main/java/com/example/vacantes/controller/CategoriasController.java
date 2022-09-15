@@ -35,7 +35,30 @@ public class CategoriasController {
     public String mostrarIndex(Model model) {
         List<Categoria> list = serviceCategorias.buscarTodas();
         model.addAttribute("categorias", list);
-        return "categorias/listCategorias";// ruta de la vista
+        return "categorias/listCategorias";
+    }
+
+    @GetMapping(value = "/indexPaginate")
+    public String mostrarIndexPaginado(Model model, Pageable page) {
+        Page<Categoria> lista = serviceCategorias.buscarTodas(page);
+        model.addAttribute("categorias", lista);
+        return "categorias/listCategorias";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String eliminar(@PathVariable("id") int idCategoria, RedirectAttributes attributes) {
+        serviceCategorias.eliminar(idCategoria);
+        attributes.addFlashAttribute("msm", "Registro eliminado de manera exitosa");
+        return "redirect:/categorias/indexPaginate";
+
+    }
+
+    @GetMapping("/editar/{id}")
+    public String Editar(@PathVariable("id") int idVacante, Model model) {
+        Categoria categoria = serviceCategorias.buscarPorId(idVacante);
+        model.addAttribute("categoria", categoria);
+        return "categorias/formCategorias";
+
     }
 
     @GetMapping("/create")
@@ -55,29 +78,10 @@ public class CategoriasController {
         serviceCategorias.guardar(categoria);
         attributes.addFlashAttribute("msm", "Registro guardado con éxito");
         System.out.println("categoria" + categoria);
-        return "redirect:/categorias/index"; // ruta de la vista x el método
+        return "redirect:/categorias/indexPaginate"; // ruta de la vista x el método
     }
 
-    @GetMapping("/delete/{id}")
-    public String eliminar(@PathVariable("id") int idCategoria, RedirectAttributes attributes,Model model) {
-        serviceCategorias.eliminar(idCategoria);
-        attributes.addFlashAttribute("msm","Registro eliminado de manera exitosa");
-        return "redirect:/categorias/index";
-    }
-    @GetMapping("/editar/{id}")
-    public String Editar(@PathVariable("id") int idVacante, Model model) {
-        Categoria categoria = serviceCategorias.buscarPorId(idVacante);
-        model.addAttribute("categoria", categoria);
-        return "categorias/formCategorias";
 
-    }
-
-    @GetMapping(value = "/indexPaginate")
-    public String mostrarIndexPaginado(Model model, Pageable page) {
-        Page<Categoria> lista = serviceCategorias.buscarTodas(page);
-        model.addAttribute("categorias", lista);
-        return "categorias/listCategorias";
-    }
 }
 
 

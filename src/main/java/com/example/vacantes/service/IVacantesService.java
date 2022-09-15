@@ -8,11 +8,13 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IVacantesService {
-    List<Vacante> buscartodas();
+    List<Vacante> buscarTodas();
     Vacante buscarPorId(Integer idVacante);
     void guardar (Vacante vacante);
     List<Vacante>buscarDestacadas();
     void eliminar (Integer idVacante);
     List<Vacante>buscarByExample(Example<Vacante> example);
-    public Page<Vacante> buscarTodas(Pageable page);
+    Page<Vacante> buscarTodas(Pageable page);
+
+
 }

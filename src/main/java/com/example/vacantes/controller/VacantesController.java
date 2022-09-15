@@ -35,9 +35,34 @@ public class VacantesController {
 
     @GetMapping("/index")
     public String mostrarIndex(Model model) {
-        List<Vacante> lista = serviceVacantes.buscartodas();
+        List<Vacante> lista = serviceVacantes.buscarTodas();
         model.addAttribute("vacantes", lista);
         return "vacantes/listVacantes";
+    }
+
+    @GetMapping(value = "/indexPaginate")
+    public String mostrarIndexPaginado(Model model, Pageable page) {
+        Page<Vacante> lista = serviceVacantes.buscarTodas(page);
+        model.addAttribute("vacantes", lista);
+        return "vacantes/listVacantes";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes attributes, Model model) {
+        serviceVacantes.eliminar(idVacante);
+        attributes.addFlashAttribute("msm", "Registro eliminado de manera exitosa");
+        System.out.println("Borrando vacante con id:" + idVacante);
+        return "redirect:/vacantes/indexPaginate";
+
+    }
+
+    @GetMapping("/editar/{id}")
+    public String Editar(@PathVariable("id") int idVacante, Model model) {
+        Vacante vacante = serviceVacantes.buscarPorId(idVacante);
+        model.addAttribute("vacante", vacante);
+        model.addAttribute("categorias", serviceCategorias.buscarTodas()); // para poblar el campo categoría del form
+        return "vacantes/formVacante";
+
     }
 
     @GetMapping("/create")
@@ -65,7 +90,7 @@ public class VacantesController {
         serviceVacantes.guardar(vacante);
         attributes.addFlashAttribute("msm", "Registro guardado con éxito");
         System.out.println("nombre Vacante" + vacante);
-        return "redirect:/vacantes/index";
+        return "redirect:/vacantes/indexPaginate";
     }
 
     @InitBinder
@@ -82,30 +107,6 @@ public class VacantesController {
         return "detalle";
     }
 
-    @GetMapping("/delete/{id}")
-    public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes attributes, Model model) {
-        serviceVacantes.eliminar(idVacante);
-        attributes.addFlashAttribute("msm", "Registro eliminado de manera exitosa");
-        System.out.println("Borrando vacante con id:" + idVacante);
-        return "redirect:/vacantes/index";
-
-    }
-
-    @GetMapping("/editar/{id}")
-    public String Editar(@PathVariable("id") int idVacante, Model model) {
-        Vacante vacante = serviceVacantes.buscarPorId(idVacante);
-        model.addAttribute("categorias", serviceCategorias.buscarTodas());
-        model.addAttribute("vacante", vacante);
-        return "vacantes/formVacante";
-
-    }
-
-    @GetMapping(value = "/indexPaginate")
-    public String mostrarIndexPaginado(Model model, Pageable page) {
-        Page<Vacante> lista = serviceVacantes.buscarTodas(page);
-        model.addAttribute("vacantes", lista);
-        return "vacantes/listVacantes";
-    }
 
 }
 

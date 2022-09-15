@@ -16,10 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,22 +32,37 @@ public class HomeController {
     @Autowired
     private ICategoriasService serviceCategorias;
 
+    @GetMapping("/")
+    public String mostrarHome(Model model) {
+        model.addAttribute("categorias", serviceCategorias.buscarTodas());
+        model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
+        return "home";
+    }
+
     @GetMapping("/tabla")
     public String mostrarTabla(Model model) {
-        List<Vacante> lista = serviceVacantes.buscartodas();
+        model.addAttribute("vacantes", serviceVacantes.buscarTodas());
+        return "tabla";
+    }
+
+    @GetMapping(value = "/tabla/indexPaginate")
+    public String mostrarIndexPaginado(Model model, Pageable page) {
+        Page<Vacante> lista = serviceVacantes.buscarTodas(page);
         model.addAttribute("vacantes", lista);
         return "tabla";
     }
 
-    @GetMapping("/")
-    public String mostrarHome(Model model) {
-        model.addAttribute("categorias", serviceCategorias.buscarTodas());
-        return "home";
+    @GetMapping("/delete/{id}")
+    public String eliminar(@PathVariable("id") int idVacante, RedirectAttributes attributes, Model model) {
+        serviceVacantes.eliminar(idVacante);
+        attributes.addFlashAttribute("msm", "Registro eliminado de manera exitosa");
+        System.out.println("Borrando vacante con id:" + idVacante);
+        return "redirect:/tabla/indexPaginate";
+
     }
 
     @ModelAttribute
     public void setGenericos(Model model) {
-        model.addAttribute("vacantes", serviceVacantes.buscarDestacadas());
         Vacante vacanteSearch = new Vacante();
         vacanteSearch.reset();
         model.addAttribute("search1", vacanteSearch);
@@ -73,13 +86,6 @@ public class HomeController {
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-    }
-
-    @GetMapping(value = "/tabla/indexPaginate")
-    public String mostrarIndexPaginado(Model model, Pageable page) {
-        Page<Vacante> lista = serviceVacantes.buscarTodas(page);
-        model.addAttribute("vacantes", lista);
-        return "tabla";
     }
 
 

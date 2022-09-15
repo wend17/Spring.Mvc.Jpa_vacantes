@@ -21,19 +21,15 @@ public class CategoriasServiceImpl implements ICategoriasService {
         cat1.setNombre("Ingeniería");
         cat1.setDescripcion("Experiencia en procesos textiles");
 
-
         Categoria cat2 = new Categoria();
         cat2.setId(2);
         cat2.setNombre("Ventas");
         cat2.setDescripcion("Experiencia en ventas");
 
-
-
         Categoria cat3 = new Categoria();
         cat3.setId(3);
         cat3.setNombre("Comunicaciones");
         cat3.setDescripcion("Experiencia en comunicaciones");
-
 
         Categoria cat4 = new Categoria();
         cat4.setId(4);

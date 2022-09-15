@@ -10,7 +10,7 @@ public class Utileria {
         // Obtenemos el nombre original del archivo.
         String nombreOriginal = multiPart.getOriginalFilename();
         nombreOriginal.replaceAll(" ", "-"); // quita espacios del nombre del archivo(img)
-        String nombreFinal = randomAlphaNumeric((8)) + nombreOriginal;
+        String nombreFinal = randomAlphaNumeric((8)) + nombreOriginal; // para que se genere un nombre aleatorio con caracteres
         try {
             // Formamos el nombre del archivo para guardarlo en el disco duro.
             File imageFile = new File(ruta + nombreFinal);
