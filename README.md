@@ -4,7 +4,7 @@
    </p>
 
 <b>Descripción del proyecto</b>
-## ✔️:Descripción del proyecto
+## ✔️ Descripción del proyecto
  <p align="justify">
 Aplicación Web que permite la gestión de empleos por descripción o categoría, integra tecnologías de Spring MVC y JPA. Tiene diferentes ventanas, entre ellas una donde 
 uestra un compendio de todas las vacantes disponibles que permite acceder al detalle de la misma, otra ventana donde se muestran las vacantes con las opciones de editar y crear una nueva vacante y tambien tiene una ventana de categorias con las opciones anteriormente mencionadas</p>
@@ -24,7 +24,7 @@ uestra un compendio de todas las vacantes disponibles que permite acceder al det
 <p align="justify">
 4 . Edita y elimina registros de las diferentes ventanas</p>
 
-## ✔️: Tecnologías utilizadas
+## ✔️ Tecnologías utilizadas
 <p>
   <li>Java 11</li>
   <li>Spring MVC-JPA</li>
