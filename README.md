@@ -14,15 +14,14 @@ uestra un compendio de todas las vacantes disponibles que permite acceder al det
 </p>
 
 ## :hammer:Funcionalidades del proyecto
+- `Funcionalidad 1`:  Busca ofertas de empleo por descripción o categoría.
+- `Funcionalidad 2`:  Crea nuevas ofertas de empleo y categorías, a la vez que las registra en el sistema
+- `Funcionalidad 3`:  Muestra el detalle de las diferentes ofertas de empleo solicitadas
+- `Funcionalidad 4`:  Edita y elimina registros de las diferentes ventanas
 
 <p align="justify">
-1 . Busca ofertas de empleo por descripción o categoría</p>
-<p align="justify">
-2 . Crea nuevas ofertas de empleo y categorías, a la vez que las registra en el sistema </p>
-<p align="justify">
-3 . Muestra el detalle de las diferentes ofertas de empleo solicitadas</p>
-<p align="justify">
-4 . Edita y elimina registros de las diferentes ventanas</p>
+Las diferentes funcionalidades se relacionan entre sí para que la aplicación trabaje de manera eficiente</p>
+
 
 ## ✔️ Tecnologías utilizadas
 <p>
@@ -30,8 +29,11 @@ uestra un compendio de todas las vacantes disponibles que permite acceder al det
   <li>Spring MVC-JPA</li>
   <li>Bootstrap</li>
   <li>Thymeleaf</li>
+  <li>MySQL</li>
   </p>
 
+## ✔️ Desarrollador del proyecto
+<li> Wendy Villazana Astucuri</li>
 
 
 
