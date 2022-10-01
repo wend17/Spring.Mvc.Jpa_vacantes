@@ -1,8 +1,8 @@
 -- 1.crear la base de datos--------------
 
-create database  empleos;
+create database empleos;
 
--- 2.Script para crear la base de datos empleosdb (MySQL 8.0)
+-- 2.Script para crear la base de datos empleos (MySQL 8.0)
 
 DROP TABLE IF EXISTS `Categorias`;
 CREATE TABLE `Categorias` (
